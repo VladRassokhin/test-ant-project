@@ -27,7 +27,7 @@
 
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
-        <javac srcdir="${src.dir}" destdir="${classes.dir}">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="true" debuglevel="lines,vars,source">
             <classpath refid="classpath"/>
         </javac>
     </target>
@@ -52,7 +52,7 @@
     <condition property="test.remote-debug.defined" else="false" value="true">
         <and>
             <isset property="teamcity.remote-debug.jvm.options"/>
-            <isset property="teamcity.remote-debug.junit.method"/>
+            <!--<isset property="teamcity.remote-debug.junit.method"/>-->
             <isset property="teamcity.remote-debug.junit.class"/>
         </and>
     </condition>
@@ -84,7 +84,7 @@
 
             <formatter type="plain"/>
             
-            <test name="${teamcity.remote-debug.junit.class}" methods="${teamcity.remote-debug.junit.method}"/>
+            <test name="${teamcity.remote-debug.junit.class}"/>
         </junit>
     </target>
 
